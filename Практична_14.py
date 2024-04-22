@@ -4,7 +4,7 @@ from tkinter import ttk
 class CountryApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Список країн та столиць")
+        self.root.title("РЎРїРёСЃРѕРє РєСЂР°С—РЅ С‚Р° СЃС‚РѕР»РёС†СЊ")
 
         self.countries = []
         self.filtered_countries = []
@@ -15,41 +15,41 @@ class CountryApp:
         self.create_widgets()
 
     def create_widgets(self):
-        # Введення тексту для фільтрації
+        # Р’РІРµРґРµРЅРЅСЏ С‚РµРєСЃС‚Сѓ РґР»СЏ С„С–Р»СЊС‚СЂР°С†С–С—
         filter_entry = ttk.Entry(self.root, textvariable=self.filter_var)
         filter_entry.pack(pady=10)
 
-        # Створення ListView
+        # РЎС‚РІРѕСЂРµРЅРЅСЏ ListView
         self.country_list = ttk.Treeview(self.root, columns=("Country", "Capital"), show="headings")
-        self.country_list.heading("Country", text="Країна")
-        self.country_list.heading("Capital", text="Столиця")
+        self.country_list.heading("Country", text="РљСЂР°С—РЅР°")
+        self.country_list.heading("Capital", text="РЎС‚РѕР»РёС†СЏ")
         self.country_list.pack(padx=10, pady=5, fill=tk.BOTH, expand=True)
 
-        # Кнопка для додавання країни
-        add_button = ttk.Button(self.root, text="Додати країну", command=self.add_country)
+        # РљРЅРѕРїРєР° РґР»СЏ РґРѕРґР°РІР°РЅРЅСЏ РєСЂР°С—РЅРё
+        add_button = ttk.Button(self.root, text="Р”РѕРґР°С‚Рё РєСЂР°С—РЅСѓ", command=self.add_country)
         add_button.pack(pady=5)
 
-        # Кнопка для видалення країни
-        remove_button = ttk.Button(self.root, text="Видалити країну", command=self.remove_country)
+        # РљРЅРѕРїРєР° РґР»СЏ РІРёРґР°Р»РµРЅРЅСЏ РєСЂР°С—РЅРё
+        remove_button = ttk.Button(self.root, text="Р’РёРґР°Р»РёС‚Рё РєСЂР°С—РЅСѓ", command=self.remove_country)
         remove_button.pack(pady=5)
 
-        # Додавання кількох прикладів країн
+        # Р”РѕРґР°РІР°РЅРЅСЏ РєС–Р»СЊРєРѕС… РїСЂРёРєР»Р°РґС–РІ РєСЂР°С—РЅ
         self.add_example_countries()
 
     def add_example_countries(self):
-        example_countries = [("Україна", "Київ"), ("Польща", "Варшава"), ("Німеччина", "Берлін")]
+        example_countries = [("РЈРєСЂР°С—РЅР°", "РљРёС—РІ"), ("РџРѕР»СЊС‰Р°", "Р’Р°СЂС€Р°РІР°"), ("РќС–РјРµС‡С‡РёРЅР°", "Р‘РµСЂР»С–РЅ")]
         for country, capital in example_countries:
             self.add_country_to_list(country, capital)
 
     def add_country(self):
-        country = tk.simpledialog.askstring("Додати країну", "Введіть назву країни:")
-        capital = tk.simpledialog.askstring("Додати країну", f"Введіть столицю {country}:")
+        country = tk.simpledialog.askstring("Р”РѕРґР°С‚Рё РєСЂР°С—РЅСѓ", "Р’РІРµРґС–С‚СЊ РЅР°Р·РІСѓ РєСЂР°С—РЅРё:")
+        capital = tk.simpledialog.askstring("Р”РѕРґР°С‚Рё РєСЂР°С—РЅСѓ", f"Р’РІРµРґС–С‚СЊ СЃС‚РѕР»РёС†СЋ {country}:")
         if country and capital:
             self.add_country_to_list(country, capital)
 
     def add_country_to_list(self, country, capital):
         self.countries.append((country, capital))
-        self.countries.sort(key=lambda x: x[0])  # Сортування за назвою країни
+        self.countries.sort(key=lambda x: x[0])  # РЎРѕСЂС‚СѓРІР°РЅРЅСЏ Р·Р° РЅР°Р·РІРѕСЋ РєСЂР°С—РЅРё
         self.update_listbox()
 
     def remove_country(self):
